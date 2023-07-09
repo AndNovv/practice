@@ -1,12 +1,10 @@
 import Head from "next/head";
 import { useRef, useState } from "react";
 import { api } from "~/utils/api";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faGear } from '@fortawesome/free-solid-svg-icons'
 
 import React from 'react'
 
-
+/* eslint-disable */
 const admin = () => {
 
     const getSanatoriumCards = api.example.getSanatoriumCards.useQuery();
@@ -55,6 +53,10 @@ const admin = () => {
     return (
 
         <>
+            <Head>
+                <title>Поиск санаториев</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <div className="bg-slate-100 min-h-screen xl:px-40 lg:px-20 px-5 w-full ">
 
                 <div className="">

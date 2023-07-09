@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { useRef, useState } from "react";
-import { api } from "~/utils/api";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faGear } from '@fortawesome/free-solid-svg-icons'
 
@@ -88,7 +87,7 @@ export default function Home() {
     handleResetClick();
   }
 
-
+  /* eslint-disable */
   return (
     <>
       <Head>

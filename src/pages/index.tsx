@@ -4,6 +4,7 @@ import { api } from "~/utils/api";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faGear } from '@fortawesome/free-solid-svg-icons'
 
+/* eslint-disable */
 export default function Home() {
   const hello = api.example.hello.useQuery({ text: "backend" });
 

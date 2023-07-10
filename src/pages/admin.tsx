@@ -5,9 +5,9 @@ import { api } from "~/utils/api";
 import React from 'react'
 
 
-const admin = () => {
+const Admin = () => {
 
-    const getSanatoriumCards = api.example.getSanatoriumCards.useQuery();
+    // const getSanatoriumCards = api.example.getSanatoriumCards.useQuery();
     const getTreatments = api.treatment.getAll.useQuery();
     const createTreatment = api.treatment.create.useMutation();
     const deleteTreatment = api.treatment.delete.useMutation();
@@ -41,7 +41,7 @@ const admin = () => {
         }
     }
 
-    const handleTreatmentDelete = (treatmentProfile: String) => {
+    const handleTreatmentDelete = (treatmentProfile: string) => {
         deleteTreatment.mutate({ name: treatmentProfile.toString() });
         setTreatmentProfiles(treatmentProfiles.filter((profile) => profile !== treatmentProfile))
     }
@@ -81,4 +81,4 @@ const admin = () => {
     )
 }
 
-export default admin
+export default Admin

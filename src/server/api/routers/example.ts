@@ -38,5 +38,6 @@ export const treatmentRouter = createTRPCRouter({
           name
         }
       })
+      return treatment
     })
 });

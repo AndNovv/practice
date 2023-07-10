@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRef, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faGear } from '@fortawesome/free-solid-svg-icons'
-import { boolean } from "zod";
+import Link from "next/link";
 
 export default function Home() {
   // const getSanatoriumCards = api.example.getSanatoriumCards.useQuery();
@@ -86,13 +86,13 @@ export default function Home() {
 
   const handleSearchClick = () => {
     if (search.current) {
-      console.log(search.current!.value);
+      console.log(search.current.value);
     }
     if (date.current) {
-      console.log(date.current!.value);
+      console.log(date.current.value);
     }
     if (days.current) {
-      console.log(days.current!.value);
+      console.log(days.current.value);
     }
     console.log(treatmentProfilesSelected);
 
@@ -164,7 +164,7 @@ export default function Home() {
           <p className="text-4xl font-semibold text-black pt-10 pb-4">Популярно сейчас</p>
           <div className="flex flex-row flex-wrap py-6 gap-6 justify-between">
             {sanatoriums.map((sanatorium, index) => {
-              return <a key={`sanatorium${index}`} href="/sanatorium" className="group relative w-full md:w-[48%] h-fit text-white text-4xl font-semibold rounded-3xl overflow-hidden shadow-lg">
+              return <Link key={`sanatorium${index}`} href="/sanatorium" className="group relative w-full md:w-[48%] h-fit text-white text-4xl font-semibold rounded-3xl overflow-hidden shadow-lg">
                 <div className="relative w-full h-70 overflow-hidden">
                   <div className="absolute h-full w-full cursor-pointer bg-gradient-to-b from-[#00000000] to-[#000000c7] group-hover:to-[#00000096] transition-all"></div>
                   <img className="object-cover transition-all" src={sanatorium.img} alt={`sanatorium${index}`} />
@@ -183,7 +183,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             })}
           </div>
         </div>

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { api } from "~/utils/api";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faGear } from '@fortawesome/free-solid-svg-icons'
 
@@ -16,7 +15,6 @@ const sanatoriumData = {
 
 const treatmentProfile = ["Аллергия", "Дыхательная система", "Кожные заболевания", "Беременность", "Желудочно-кишечный тракт", "Лор органы", "Гастроэнтерология", "Желчевыделительная система", "Мочеполовая система", "Гинекология", "Имунная система", "Нарушение обмена веществ"];
 
-/* eslint-disable */
 const sanatorium = () => {
 
     return (
@@ -65,7 +63,7 @@ const sanatorium = () => {
                     <p className="font-semibold text-black text-2xl pt-5">Галерея</p>
                     <div className="pt-6 flex flex-row w-full gap-2 justify-start flex-wrap">
                         {sanatoriumData.images.map((img, index) => {
-                            return <div className="group shadow-xl rounded-2xl overflow-hidden h-60 transition-all">
+                            return <div key={`image${index}`} className="group shadow-xl rounded-2xl overflow-hidden h-60 transition-all">
                                 <img className="group-hover:scale-110 object-cover transition-all h-full" src={img} alt={`sanatorium${index}`} />
                             </div>
                         })}
@@ -74,7 +72,7 @@ const sanatorium = () => {
                     <p className="font-semibold text-black text-2xl pt-5">Профили лечения</p>
                     <div className="pt-6 flex flex-row w-full gap-2 justify-start flex-wrap">
                         {sanatoriumData.treatmentProfiles.map((treatment, index) => {
-                            return <div className="bg-slate-50 text-purple-500 py-2 px-4 rounded-full shadow-md text-lg cursor-pointer">{treatmentProfile[treatment]}</div>
+                            return <div key={`treatment${index}`} className="bg-slate-50 text-purple-500 py-2 px-4 rounded-full shadow-md text-lg cursor-pointer">{treatmentProfile[treatment]}</div>
                         })}
                     </div>
 
@@ -87,7 +85,7 @@ const sanatorium = () => {
                     <div className="pt-6 flex flex-row w-full gap-5 justify-start flex-wrap">
 
                         {sanatoriumData.comments.map((comment, index) => {
-                            return <div className="bg-slate-50 text-black py-3 px-4 rounded-xl shadow-md text-lg cursor-pointer">
+                            return <div key={`comment${index}`} className="bg-slate-50 text-black py-3 px-4 rounded-xl shadow-md text-lg cursor-pointer">
                                 <p className="pb-1 opacity-70">{comment.author}</p>
                                 <p>{comment.message}</p>
                             </div>

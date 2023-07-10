@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useRef, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faGear } from '@fortawesome/free-solid-svg-icons'
+import { boolean } from "zod";
 
 export default function Home() {
   // const getSanatoriumCards = api.example.getSanatoriumCards.useQuery();
@@ -61,33 +62,43 @@ export default function Home() {
 
   const treatmentProfile = ["Аллергия", "Дыхательная система", "Кожные заболевания", "Беременность", "Желудочно-кишечный тракт", "Лор органы", "Гастроэнтерология", "Желчевыделительная система", "Мочеполовая система", "Гинекология", "Имунная система", "Нарушение обмена веществ"]
 
-  const [treatmentProfiles, setTreatmentProfiles] = useState(Array(treatmentProfile.length).fill(false));
+  const [treatmentProfilesSelected, setTreatmentProfilesSelected] = useState(Array(treatmentProfile.length).fill(false) as boolean[]);
 
   const handleProfileClick = (num: number) => {
-    setTreatmentProfiles(
-      treatmentProfiles.map((profile, index) =>
-        index === num ? !treatmentProfiles[index] : treatmentProfiles[index])
-    );
-  };
+    const newTreatmentProfilesSelected: boolean[] = treatmentProfilesSelected.map((profile, index) =>
+      num === index ? !profile : profile)
+    setTreatmentProfilesSelected(newTreatmentProfilesSelected);
+  }
 
   const handleResetClick = () => {
-    search.current!.value = "";
-    date.current!.value = "";
-    days.current!.value = "";
+    if (search.current) {
+      search.current.value = "";
+    }
+    if (date.current) {
+      date.current.value = "";
+    }
+    if (days.current) {
+      days.current.value = "";
+    }
     const resetTreatmentProfiles = Array(treatmentProfile.length).fill(false);
-    setTreatmentProfiles(resetTreatmentProfiles);
+    setTreatmentProfilesSelected(resetTreatmentProfiles);
   };
 
   const handleSearchClick = () => {
-    console.log(search.current!.value);
-    console.log(date.current!.value);
-    console.log(days.current!.value);
-    console.log(treatmentProfiles);
+    if (search.current) {
+      console.log(search.current!.value);
+    }
+    if (date.current) {
+      console.log(date.current!.value);
+    }
+    if (days.current) {
+      console.log(days.current!.value);
+    }
+    console.log(treatmentProfilesSelected);
 
     handleResetClick();
   }
 
-  /* eslint-disable */
   return (
     <>
       <Head>
@@ -132,7 +143,7 @@ export default function Home() {
 
           <div className="flex flex-wrap gap-2 pt-8 pb-6">
             {treatmentProfile.map((profile, index) => {
-              return <div onClick={() => { handleProfileClick(index) }} key={`profile${index}`} className={treatmentProfiles[index] ? "flex grow bg-white rounded-lg text-purple-600 font-semibold px-6 py-1 my-2 items-center transition-all shadow-md cursor-pointer" : "flex grow opacity-50 bg-purple-500 text-white rounded-lg font-semibold px-6 py-1 my-2 items-center transition-colors shadow-md cursor-pointer hover:bg-purple-400"}>
+              return <div onClick={() => { handleProfileClick(index) }} key={`profile${index}`} className={treatmentProfilesSelected[index] ? "flex grow bg-white rounded-lg text-purple-600 font-semibold px-6 py-1 my-2 items-center transition-all shadow-md cursor-pointer" : "flex grow opacity-50 bg-purple-500 text-white rounded-lg font-semibold px-6 py-1 my-2 items-center transition-colors shadow-md cursor-pointer hover:bg-purple-400"}>
                 <p className="text-center w-full">{profile}</p>
               </div>
             })
@@ -167,7 +178,7 @@ export default function Home() {
                     <p className="text-black text-xl font-normal pb-2">Профили:</p>
                     <div className="flex flex-wrap gap-3 pb-2">
                       {sanatorium.treatmentProfiles.map((treatment, index) => {
-                        return <div className="bg-slate-50 text-purple-500 py-2 px-4 rounded-full shadow-md text-lg cursor-pointer">{treatmentProfile[treatment]}</div>
+                        return <div key={`profile${index}`} className="bg-slate-50 text-purple-500 py-2 px-4 rounded-full shadow-md text-lg cursor-pointer">{treatmentProfile[treatment]}</div>
                       })}
                     </div>
                   </div>

@@ -4,7 +4,7 @@ import { api } from "~/utils/api";
 
 import React from 'react'
 
-/* eslint-disable */
+
 const admin = () => {
 
     const getSanatoriumCards = api.example.getSanatoriumCards.useQuery();

@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faGear } from '@fortawesome/free-solid-svg-icons'
+import Footer from "~/components/Footer";
+import Header from "~/components/Header";
 
 const sanatoriumData = {
     name: "Санаторий Заполярье",
@@ -25,24 +25,7 @@ const sanatorium = () => {
             </Head>
             <div className="flex flex-col min-h-screen text-lg w-full">
 
-                <header className='xl:px-40 lg:px-20 px-5 flex flex-col w-full bg-gradient-to-t from-purple-600 to-purple-800'>
-
-                    <div className="flex justify-between py-5">
-
-                        <div className="flex gap-4 text-white text-lg">
-                            <p className="text-xl font-semibold">Логотип</p>
-                            <p className="text-xl font-semibold">Название</p>
-                        </div>
-
-                        <div className="flex gap-6 text-white align-middle justify-center">
-                            <FontAwesomeIcon icon={faUser} size="xl" className="hover:cursor-pointer" />
-                            <FontAwesomeIcon icon={faGear} size="xl" className="hover:cursor-pointer" />
-                        </div>
-
-                    </div>
-                </header>
-
-
+                <Header />
 
                 <div className="xl:px-40 lg:px-20 px-5 pt-6">
 
@@ -94,27 +77,8 @@ const sanatorium = () => {
                     </div>
 
                 </div>
+                <Footer />
 
-                <footer className="text-purple-500 xl:px-40 lg:px-20 px-5 bg-gradient-to-b from-purple-300 to-purple-400 mt-10">
-                    <div className="flex flex-row justify-around py-5 text-white font-semibold">
-                        <li className="flex flex-col">
-                            <a className="cursor-pointer">Ссылка</a>
-                            <a className="cursor-pointer">Ссылка</a>
-                            <a className="cursor-pointer">Ссылка</a>
-                        </li>
-                        <li className="flex flex-col">
-                            <a className="cursor-pointer">Ссылка</a>
-                            <a className="cursor-pointer">Ссылка</a>
-                            <a className="cursor-pointer">Ссылка</a>
-                        </li>
-                        <li className="flex flex-col">
-                            <a className="cursor-pointer">Ссылка</a>
-                            <a className="cursor-pointer">Ссылка</a>
-                            <a className="cursor-pointer">Ссылка</a>
-                        </li>
-
-                    </div>
-                </footer>
             </div>
         </>
     )

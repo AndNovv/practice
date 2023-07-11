@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faGear } from '@fortawesome/free-solid-svg-icons'
 import Link from "next/link";
+import Footer from "~/components/Footer";
 
 export default function Home() {
   // const getSanatoriumCards = api.example.getSanatoriumCards.useQuery();
@@ -187,26 +188,8 @@ export default function Home() {
             })}
           </div>
         </div>
-        <footer className="xl:px-40 lg:px-20 px-5 bg-gradient-to-b from-purple-600 to-purple-800 mt-5">
-          <div className="flex flex-row justify-around py-5 text-white font-semibold">
-            <li className="flex flex-col">
-              <a className="cursor-pointer">Ссылка</a>
-              <a className="cursor-pointer">Ссылка</a>
-              <a className="cursor-pointer">Ссылка</a>
-            </li>
-            <li className="flex flex-col">
-              <a className="cursor-pointer">Ссылка</a>
-              <a className="cursor-pointer">Ссылка</a>
-              <a className="cursor-pointer">Ссылка</a>
-            </li>
-            <li className="flex flex-col">
-              <a className="cursor-pointer">Ссылка</a>
-              <a className="cursor-pointer">Ссылка</a>
-              <a className="cursor-pointer">Ссылка</a>
-            </li>
 
-          </div>
-        </footer>
+        <Footer />
 
       </div>
     </>

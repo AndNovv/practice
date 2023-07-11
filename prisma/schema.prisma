@@ -16,11 +16,24 @@ model Sanatorium {
   name              String      @unique
   location          String
   price             Int
-  rating            Float
+  rating            Float       @default(0)
   description       String
   treatmentProfiles Treatment[]
   comments          Comment[]
   images            Image[]
+  categories        Category[]
+}
+
+model Category {
+  id      String @id @default(cuid())
+  title   String
+  content String @db.Text
+
+  Sanatorium   Sanatorium @relation(fields: [sanatoriumId], references: [id])
+  sanatoriumId String
+
+  @@unique([sanatoriumId, title])
+  @@index([sanatoriumId])
 }
 
 model Treatment {

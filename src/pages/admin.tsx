@@ -1,8 +1,10 @@
 import Head from "next/head";
 import { useRef, useState } from "react";
 import { api } from "~/utils/api";
+import Footer from "~/components/Footer";
 
 import React from 'react'
+import Header from "~/components/Header";
 
 
 const Admin = () => {
@@ -57,9 +59,12 @@ const Admin = () => {
                 <title>Поиск санаториев</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className="bg-slate-100 min-h-screen xl:px-40 lg:px-20 px-5 w-full ">
+            <div className="bg-slate-100 min-h-screen w-full flex flex-col">
 
-                <div className="">
+                <Header />
+
+                <div className="xl:px-40 lg:px-20 px-5 flex-1">
+
                     <p className="text-2xl text-black font-semibold pt-4">Список всех текущих профилей лечения:</p>
                     <div className="flex flex-wrap gap-4 pt-4">
                         {treatmentProfiles.map((treatmentProfile, index) => {
@@ -67,15 +72,18 @@ const Admin = () => {
                         })
                         }
                     </div>
-                </div>
 
-                <div className="flex flex-col pt-5 gap-2">
-                    < label className="font-semibold text-xl">Добавить профиль лечения</label>
-                    <div className="flex flex-row gap-4">
-                        <input ref={treatment} className="outline-yellow-500 w-full px-4 h-14 py-4 rounded-lg" type="text" placeholder="Название профиля лечения"></input>
-                        <button onClick={() => handleAddTreatmentClick()} className="color-grey w-fit h-full self-end font-semibold px-8 py-4 align-middle text-white text-lg shadow-lg eye bg-yellow-500 rounded-full hover:bg-yellow-400">Добавить</button>
+                    <div className="flex flex-col pt-5 gap-2">
+                        < label className="font-semibold text-xl">Добавить профиль лечения</label>
+                        <div className="flex flex-row gap-4">
+                            <input ref={treatment} className="outline-yellow-500 w-full px-4 h-14 py-4 rounded-lg" type="text" placeholder="Название профиля лечения"></input>
+                            <button onClick={() => handleAddTreatmentClick()} className="color-grey w-fit h-full self-end font-semibold px-8 py-4 align-middle text-white text-lg shadow-lg eye bg-yellow-500 rounded-full hover:bg-yellow-400">Добавить</button>
+                        </div>
                     </div>
                 </div>
+
+                <Footer />
+
             </div >
         </>
     )

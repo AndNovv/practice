@@ -7,11 +7,11 @@ const Footer = () => {
             <div className="flex flex-row justify-around py-5 text-white font-semibold">
                 <li className="flex flex-col">
                     <Link href="/" className="cursor-pointer">Главная</Link>
-                    <Link href="/admin" className="cursor-pointer">Админ</Link>
-                    <Link href="/sanatorium" className="cursor-pointer">Санаторий</Link>
+                    <Link href="/admin" className="cursor-pointer">Администрирование</Link>
+                    <Link href="/sanatorium" className="cursor-pointer">Страница санатория</Link>
                 </li>
                 <li className="flex flex-col">
-                    <Link href="/edit" className="cursor-pointer">Настройка санатория</Link>
+                    <Link href="/edit" className="cursor-pointer">Создание санатория</Link>
                     <a className="cursor-pointer">Ссылка</a>
                     <a className="cursor-pointer">Ссылка</a>
                 </li>

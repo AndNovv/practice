@@ -28,8 +28,10 @@ model Category {
   id      String @id @default(cuid())
   title   String
   content String @db.Text
+  order   Int
+  style   Int
 
-  Sanatorium   Sanatorium @relation(fields: [sanatoriumId], references: [id])
+  sanatorium   Sanatorium @relation(fields: [sanatoriumId], references: [id], onDelete: Cascade)
   sanatoriumId String
 
   @@unique([sanatoriumId, title])
@@ -37,12 +39,9 @@ model Category {
 }
 
 model Treatment {
-  id           String      @id @default(cuid())
-  name         String      @unique
-  Sanatorium   Sanatorium? @relation(fields: [sanatoriumId], references: [id])
-  sanatoriumId String?
-
-  @@index([sanatoriumId])
+  id         String       @id @default(cuid())
+  name       String       @unique
+  Sanatorium Sanatorium[]
 }
 
 model Comment {
@@ -56,10 +55,10 @@ model Comment {
 }
 
 model Image {
-  id           String      @id @default(cuid())
-  img          String      @unique
-  Sanatorium   Sanatorium? @relation(fields: [sanatoriumId], references: [id])
-  sanatoriumId String?
+  id           String     @id @default(cuid())
+  img          String     @unique
+  Sanatorium   Sanatorium @relation(fields: [sanatoriumId], references: [id])
+  sanatoriumId String
 
   @@index([sanatoriumId])
 }

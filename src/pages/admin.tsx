@@ -70,6 +70,7 @@ const Admin = () => {
         <>
             <Head>
                 <title>Поиск санаториев</title>
+                <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className="bg-slate-100 min-h-screen w-full flex flex-col">

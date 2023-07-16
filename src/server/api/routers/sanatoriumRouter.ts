@@ -84,6 +84,27 @@ export const sanatoriumRouter = createTRPCRouter({
             });
         }),
 
+
+    // Used in index
+    getMainInfo: publicProcedure
+        .query(({ ctx }) => {
+            return ctx.prisma.sanatorium.findMany({
+                select: {
+                    id: true,
+                    name: true,
+                    description: true,
+                    location: true,
+                    price: true,
+                    rating: true,
+                    treatmentProfiles: {
+                        select: {
+                            name: true,
+                        }
+                    },
+                }
+            });
+        }),
+
     delete: publicProcedure
         .input(z.object({ name: z.string() }))
         .mutation(async ({ input: { name }, ctx }) => {
@@ -117,4 +138,5 @@ export const sanatoriumRouter = createTRPCRouter({
             })
             return sanatorium
         }),
+
 });

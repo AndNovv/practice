@@ -24,7 +24,6 @@ export default function Home() {
   const dateto = useRef<HTMLInputElement>(null);
   const days = useRef<HTMLInputElement>(null);
 
-  // const treatmentProfile = ["Аллергия", "Дыхательная система", "Кожные заболевания", "Беременность", "Желудочно-кишечный тракт", "Лор органы", "Гастроэнтерология", "Желчевыделительная система", "Мочеполовая система", "Гинекология", "Имунная система", "Нарушение обмена веществ"]
 
   const { data: AllTreatments } = api.treatment.getAll.useQuery();
 
@@ -71,14 +70,48 @@ export default function Home() {
     }
     const resetTreatmentProfiles = treatmentProfile?.map((profile) => ({ name: profile.name, selected: false }));
     if (resetTreatmentProfiles) setTreatmentProfiles(resetTreatmentProfiles);
+    const resetSanatoriumItems = selectedSanatoriums?.map((sanatorium) => ({ name: sanatorium.name, selected: false }));
+    setSelectedSanatoriums(resetSanatoriumItems);
+    setSanatoriumSelected(false);
   };
 
   const handleSearchClick = () => {
     handleResetClick();
 
-    // search logic here:
-
   }
+
+  const useOutsideClick = (callback: () => void) => {
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (ref.current && !ref.current.contains(event.target as Node)) {
+          callback();
+        }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [callback]);
+
+    return ref;
+  };
+
+  const sanatoriumMenu = useOutsideClick(() => {
+    setOpenSanatoriumMenu(false);
+  })
+
+
+  // useEffect(() => {
+  //   if (sanatoriumMenu) {
+  //     const onClick = e => sanatoriumMenu.contains(e.target) || console.log('клик вне компонента');
+  //     document.addEventListener('click', onClick);
+  //   }
+  //   return () => document.removeEventListener('click', onClick);
+  // }, [sanatoriumMenu]);
 
   const handleDeleteSanatoriumItemClick = (name: string) => {
     const newSelectedSanatoriums: Sanatorium[] = selectedSanatoriums.map((sanatorium) =>
@@ -105,7 +138,6 @@ export default function Home() {
 
   return (
 
-
     <>
       <Head>
         <title>Поиск санаториев</title>
@@ -130,31 +162,32 @@ export default function Home() {
 
           </div>
 
-          <p className="text-white text-5xl pt-10 text-center font-bold">Поиск санаториев</p>
-          <p className="text-white text-xl pt-5 pb-7 text-center font-semibold">Экономим ваше время и деньги</p>
+          <p className="text-white text-5xl pt-10 text-center font-bold">Поиск санаторно-курортного лечения и отдыха в Узбекистане</p>
+          <p className="text-white text-xl pt-5 pb-7 text-center font-semibold"></p>
 
           <div className="flex flex-col gap-1 pt-4">
             <div className="flex gap-1">
               <div className="group flex-1">
-                <p className="opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 text-white pl-4 mb-2 transition-all">Дата заезда от</p>
-                <input ref={datefrom} className="outline-yellow-500 px-4 py-4 h-14 rounded-tl-lg w-full" type="date" placeholder="Дата заезда от"></input>
+                <p className="text-white pl-4 mb-2">Дата заезда от</p>
+                <input defaultValue={"Дата заезда от"} ref={datefrom} className="outline-yellow-500 px-4 py-4 h-14 rounded-tl-lg w-full" type="date" placeholder="Дата заезда от"></input>
               </div>
 
               <div className="group flex-1">
-                <p className="opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 text-white pl-4 mb-2 transition-all">Дата заезда до</p>
+                <p className="text-white pl-4 mb-2">Дата заезда до</p>
                 <input ref={dateto} className="outline-yellow-500 px-4 py-4 h-14 w-full" type="date" placeholder="Дата заезда до"></input>
               </div>
 
               <div className="group flex-1">
-                <p className="opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 text-white pl-4 mb-2 transition-all">Количество дней</p>
+                <p className="text-white pl-4 mb-2">Количество дней</p>
+                {/* <p className="opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 text-white pl-4 mb-2 transition-all">Количество дней</p> */}
                 <input ref={days} className="outline-yellow-500 px-4 py-4 rounded-tr-lg h-14 w-full" type="number" placeholder="Количество дней"></input>
               </div>
             </div>
 
-            <div className="group relative">
+            <div ref={sanatoriumMenu} className="group relative">
               <div className="outline-yellow-500 w-full px-4 h-14 py-1 rounded-b-lg bg-white flex justify-between items-center">
                 <div className="flex gap-2">
-                  {!sanatoriumsSelected && <p className="text-slate-400">Выберите интересующие санатории</p>}
+                  {!sanatoriumsSelected && <p className="text-slate-400">Выберите один или несколько санаториев</p>}
                   {selectedSanatoriums.map((sanatorium, index) =>
                     sanatorium.selected &&
                     <div onClick={() => handleDeleteSanatoriumItemClick(sanatorium.name)} key={`selectedSanatorium${index}`} className="text-slate-600 flex gap-2 items-center bg-purple-200 rounded-full border-purple-500 border-2 py-1 px-2 cursor-pointer">

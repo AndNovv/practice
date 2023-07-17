@@ -174,7 +174,7 @@ const Edit = () => {
                 <Header />
                 <div className='flex-1 xl:px-40 lg:px-20 px-5 w-full mt-5 flex flex-col'>
 
-                    <div className='flex gap-5 md:flex-row flex-col'>
+                    <div className='flex gap-5 lg:flex-row flex-col'>
                         <div className="relative w-full max-h-[30rem] overflow-hidden group rounded-3xl">
                             <div className="absolute h-full w-full cursor-pointer bg-gradient-to-b from-[#00000000] to-[#000000c7] group-hover:to-[#00000096] transition-all"></div>
                             <img className="object-cover transition-all h-full w-full" src="/assets/1.webp" alt="Sanatorium" />

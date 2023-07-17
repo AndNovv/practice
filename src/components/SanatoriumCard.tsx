@@ -35,7 +35,6 @@ const SanatoriumCard = (sanatorium: SanatoriumCardProps) => {
             <div className="px-8 py-3 flex flex-col">
                 <p className="text-black text-xl font-normal pb-2">{sanatorium.description}</p>
                 <div className="flex flex-wrap gap-3 pb-2 flex-col">
-                    {/* <p className='text-xl text-black font-normal'>Наши профили</p> */}
                     <div className='flex flex-wrap gap-2 my-4'>
                         {sanatorium.treatmentProfiles?.map((treatment, index) => {
                             return <div key={`profile${index}`} className="bg-slate-50 text-purple-500 py-2 px-4 rounded-full shadow-md text-lg cursor-pointer">{treatment.name}</div>
